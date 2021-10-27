@@ -1,7 +1,4 @@
-@extends('layout')
-
-@section('tasks')
-
+<x-layout>
     <div class="container">
 
         <div><h2>To do TASKS</h2></div>
@@ -12,6 +9,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Time created at</th>
+                <th scope="col">Category</th>
             </tr>
             </thead>
 
@@ -21,10 +19,13 @@
                     <td>{{ $task->id }}</td>
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->created_at }}</td>
+                    <td>{{ $task->category->name }}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+</x-layout>
 
-@endsection
+
+
