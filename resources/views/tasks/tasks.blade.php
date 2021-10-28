@@ -24,7 +24,9 @@
             @endforeach
             </tbody>
         </table>
+        <a class="btn btn-primary" href="/tasks/create" role="button">New Task</a>
     </div>
+
 </x-layout>
 
 

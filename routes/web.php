@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\TasksController;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/','index');
-Route::get('/tasks', function () {
-    return view('tasks.tasks',['tasks'=> Task::latest()->get()]);
-});
+Route::get('/tasks', [TasksController::class, 'show'])->middleware('auth');
+Route::get('/tasks/create', [TasksController::class, 'create'])->middleware('auth');
+Route::post('/tasks/store', [TasksController::class, 'store'])->middleware('auth');
+
+
 Route::get('/register',[RegisterController::class,'create'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
 Route::get('/login',[SessionsController::class,'create'])->middleware('guest');
