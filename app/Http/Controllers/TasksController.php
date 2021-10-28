@@ -25,8 +25,12 @@ class TasksController extends Controller
            'title'=>['required'],
            'category_id'=>['required',Rule::exists('categories','id')]
        ]);
-       Task::create($attributes,['user_id'=>Auth::id()]);
+       Task::create([
+           'title'=>$attributes['title'],
+           'category_id'=>$attributes['category_id'],
+           'user_id'=>Auth::id()
+       ]);
 
-       redirect('/tasks')->with(['success','Task Added!']);
+       return redirect('/tasks')->with(['success','Task Added!']);
    }
 }
